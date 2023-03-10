@@ -25,12 +25,80 @@ vidimost_polya=[["•","•","•","•","•","•","•","•","•","•","�
                 ["•","•","•","•","•","•","•","•","•","•","•","•"]]
 pov=0
 k=0
+i=0
+j=0
 while pov != 3:
     mx=random.randint(1,11)
     my=random.randint(1,11)
     pole[mx][my]="!"
     pov=pov+1
-    chek(stroka,stolb):
+    def minaproverka(vidimost_polya,i,j,k):
+        if pole[i][j] == "*" and pole[i+1][j] == "*" and pole[i-1][j] == "*" and pole[i][j+1] == "*" and pole[i][j-1] == "*" and pole[i1][j+1] == "*" and pole[i-1][j-1] == "*" and pole[i-1][j+1] == "*" and pole[i+1][j-1] == "*":
+            return "*"
+        else:
+            if i == 0:
+                for l in range(1,11):
+                    if vidimost_polya[i+l][j] == "!":
+                        k=k+1
+                        vidimost_polya[i+l][j]==k
+                        return
+                    else:
+                        return "*"
+            elif i == 0 and j >= 0:
+                for l in range(1,11):
+                    if vidimost_polya[i+l][j] == "!":
+                        k=k+1
+                        vidimost_polya[i+l][j]==k
+                        return k
+                    if vidimost_polya[i+l][j-1] == "!":
+                        k=k+1
+                        vidimost_polya[i+l][j-1]==k
+                        return k
+                    else:
+                        return "*"
+                    if vidimost_polya[i][j-1] == "!":
+                        k=k+1
+                        vidimost_polya[i][j-1]==k
+                        return k
+                    else:
+                        return "*"
+            elif i >= 0 and j >= 0:
+                for l in range(1,11):
+                    if vidimost_polya[i+l][j] == "!":
+                        k=k+1
+                        vidimost_polya[i+l][j]==k
+                        return k
+                    if vidimost_polya[i+l][j-1] == "!":
+                        k=k+1
+                        vidimost_polya[i+l][j-1]==k
+                        return k
+                    else:
+                        return "*"
+                    if vidimost_polya[i][j-1] == "!":
+                        k=k+1
+                        vidimost_polya[i][j-1]==k
+                        return k
+                    else:
+                        return "*"
+                    if vidimost_polya[i+1][j+1] == "!":
+                        k=k+1
+                        vidimost_polya[i+1][j+1]==k
+                        return k
+                    else:
+                        return "*"
+                    if vidimost_polya[i-1][j+1] == "!":
+                        k=k+1
+                        vidimost_polya[i-1][j+1]==k
+                        return k
+                    else:
+                        return "*"
+                    if vidimost_polya[i-1][j-1] == "!":
+                        k=k+1
+                        vidimost_polya[i-1][j-1]==k
+                        return k
+                    else:
+                        return "*"
+        minaproverka(vidimost_polya,i,j,k)
 # проверка поля на то, что внутри него
 # если поле пустое, проверяются все клетки вокруг него
 # если стена — не проверяются
