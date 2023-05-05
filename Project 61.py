@@ -18,7 +18,7 @@ x_r = 550
 y_r = 550
 
 x_p = 625
-y_p = 550
+y_p = 700
   
 # dimensions of the object 
 width = 150
@@ -26,7 +26,10 @@ height = 20
   
 # velocity / speed of movement
 vel = 10
-V = 3
+# V = 3
+V_y_p = 3
+V_x_p = 3
+V_x_x_p = (V_y_p, V_x_p)
   
 # Indicates pygame is running
 run = True
@@ -81,13 +84,22 @@ while run:
     # drawing object on screen which is rectangle here 
     rect = pygame.draw.rect(win, (255, 255, 255), (x_r, y_r, width, height))
     point = pygame.draw.rect(win, (255, 255, 255), (x_p, y_p, 7,7))
-    
-    y_p -= V;
-    x_p -= 2 * V;
+    if rect.colliderect(point):
+        V_x_p=-V_x_p
+        V_y_p=-V_y_p
+        
+    y_p -= V_y_p;
+    x_p -= 2 * V_x_p;
     if y_p < 0:
-        V = -V;
+        V_y_p = -V_y_p;
     if x_p < 0 or x_p > 1200:
-        V = -V
+        V_x_p = -V_x_p
+    
+    if x_p < rect.center[0] and rect.colliderect(point):
+        V_x_p = V_x_p
+    if x_p > rect.center[1] and rect.colliderect(point):
+        V_y_p = V_y_p
+
     
       
     # it refreshes the window
