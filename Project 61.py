@@ -1,5 +1,7 @@
 # import pygame module in this program 
 import pygame
+
+colour = [[255, 0, 255], [255, 0, 0], [255, 255, 0], [0, 255, 0], [0, 0, 255]]
   
 # activate the pygame library .  
 # initiate pygame and give permission  
@@ -13,7 +15,10 @@ win = pygame.display.set_mode((1200, 600))
 # set the pygame window name 
 pygame.display.set_caption("Проект <<pygame>>")
   
-# object current co-ordinates 
+# object current co-ordinates
+
+x_rs = 0
+
 x_r = 550
 y_r = 550
 
@@ -84,6 +89,29 @@ while run:
     # drawing object on screen which is rectangle here 
     rect = pygame.draw.rect(win, (255, 255, 255), (x_r, y_r, width, height))
     point = pygame.draw.rect(win, (255, 255, 255), (x_p, y_p, 7,7))
+    move = x_rs
+    d = 1
+    for i in range (1, 46):
+        pygame.draw.rect(win, (colour[0]), (move, 0, 25,25))
+        move+=27 + d
+    move = x_rs
+    for i in range (1, 46):
+        pygame.draw.rect(win, (colour[1]), (move, 27, 25,25))
+        move+=27 + d
+    move = x_rs
+    for i in range (1, 46):
+        pygame.draw.rect(win, (colour[2]), (move, 54, 25,25))
+        move+=27 + d
+    move = x_rs
+    for i in range (1, 46):
+        pygame.draw.rect(win, (colour[3]), (move, 81, 25,25))
+        move+=27 + d
+    move = x_rs
+    for i in range (1, 46):
+        pygame.draw.rect(win, (colour[4]), (move, 108, 25,25))
+        move+=27 + d
+        
+        
     if rect.colliderect(point):
         V_x_p=-V_x_p
         V_y_p=-V_y_p
