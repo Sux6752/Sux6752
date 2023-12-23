@@ -1,5 +1,6 @@
 import telebot
 from telebot import types
+from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 bot=telebot.TeleBot("6980649881:AAFVwmGatEDeqK6sYfe1h_CSNHXisertdj0")
 
 @bot.message_handler(commands=['start'])
@@ -29,20 +30,29 @@ def start(message):
 def start(message):
     bot.delete_message(message.id)
 
-
-# a = types.ReplyKeyboardMarkup(resize_keyboard=True)
+'''@bot.message_handler(commands=['gifs'])
+def button_message(message):
+    a = types.ReplyKeyboardMarkup(resize_keyboard=True)
     #a = types.ReplyKeyboardMarkup()
 
-    #button1 = types.KeyboardButton("Test#1")
+    button1 = types.KeyboardButton("Test#1")
 # button1 =types.KeyboardButton("Test#1")
 
-    #button2 = types.KeyboardButton("Test#2")
+    button2 = types.KeyboardButton("Test#2")
 # button2 =types.KeyboardButton("Test#2")
 
-    #button3 = types.KeyboardButton("Test#3")
+    button3 = types.KeyboardButton("Test#3")
+    a.add(button1,button2,button3)
+    bot.send_message(message.chat.id, 'hello', reply_markup=a)'''
 
-    #a.row(button1)
-    # bot.send_message(message.chat.id, reply_markup=a)
+@bot.message_handler(commands=["geophone"])
+def geophone(message):
+    # Эти параметры для клавиатуры необязательны, просто для удобства
+    keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
+    button_phone = types.KeyboardButton(text="Отправить номер телефона",  url='google.com')
+    button_geo = types.KeyboardButton(text="Отправить местоположение", url='google.com')
+    keyboard.add(button_phone, button_geo)
+    bot.send_message(message.chat.id,'<b>TortI</b>', parse_mode='html')
 
 
 @bot.message_handler(content_types=['text'])
